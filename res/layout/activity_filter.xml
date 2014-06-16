@@ -29,13 +29,13 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/txtColorFilter"
+        android:id="@+id/txtImageColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtImageSize"
         android:layout_below="@+id/txtImageSize"
         android:layout_marginTop="60dp"
-        android:text="Color Filter"
+        android:text="Image Color"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <Spinner
@@ -47,18 +47,18 @@
         android:layout_toRightOf="@+id/txtImageSize" />
 
     <Spinner
-        android:id="@+id/spnrColorFilter"
+        android:id="@+id/spnrImageColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spnrImageSize"
         android:layout_marginLeft="40dp"
-        android:layout_toRightOf="@+id/txtColorFilter" />
+        android:layout_toRightOf="@+id/txtImageColor" />
 
     <Spinner
         android:id="@+id/spnrImageType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spnrColorFilter"
+        android:layout_below="@+id/spnrImageColor"
         android:layout_marginLeft="40dp"
         android:layout_toRightOf="@+id/txtImageType" />
 
@@ -66,8 +66,8 @@
         android:id="@+id/txtImageType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtColorFilter"
-        android:layout_below="@+id/txtColorFilter"
+        android:layout_alignLeft="@+id/txtImageColor"
+        android:layout_below="@+id/txtImageColor"
         android:layout_marginTop="60dp"
         android:text="Image Type"
         android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -97,6 +97,7 @@
         android:layout_below="@+id/tvSiteFilter"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:onClick="onFilterSave"
         android:text="Save" />
 
 </RelativeLayout>

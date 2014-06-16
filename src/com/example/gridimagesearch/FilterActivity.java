@@ -1,22 +1,28 @@
 package com.example.gridimagesearch;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class FilterActivity extends Activity {
+
+	Spinner spnrImageSize;
+	Spinner spnrImageColor;
+	Spinner spnrImageType;
+
+	Filters filters;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_filter);
+		setupViews();
 	}
 
 	@Override
@@ -27,4 +33,40 @@ public class FilterActivity extends Activity {
 		return true;
 	}
 
+	private void setupViews() {
+		spnrImageSize = (Spinner) findViewById(R.id.spnrImageSize);
+		spnrImageColor = (Spinner) findViewById(R.id.spnrImageColor);
+		spnrImageType = (Spinner) findViewById(R.id.spnrImageType);
+
+		ArrayList<String> imageSizeList = new ArrayList<String>(Filters
+				.getImageSizes().keySet());
+		ArrayAdapter<String> imageSizeAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_dropdown_item, imageSizeList);
+		spnrImageSize.setAdapter(imageSizeAdapter);
+
+		ArrayList<String> imageColorList = new ArrayList<String>(Filters
+				.getImageColors().keySet());
+		ArrayAdapter<String> imageColorAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_dropdown_item, imageColorList);
+		spnrImageColor.setAdapter(imageColorAdapter);
+
+		ArrayList<String> imageTypeList = new ArrayList<String>(Filters
+				.getImageTypes().keySet());
+		ArrayAdapter<String> imageTypeAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_dropdown_item, imageTypeList);
+		spnrImageType.setAdapter(imageTypeAdapter);
+	}
+
+	public void onFilterSave(View v) {
+		Intent searchIntent = new Intent(this, SearchActivity.class);
+		
+		String imageSizeKey = Filters.getImageSizes().get(spnrImageSize.getSelectedItem().toString());
+		String imageColorKey = Filters.getImageColors().get(spnrImageColor.getSelectedItem().toString());
+		String imageTypeKey = Filters.getImageTypes().get(spnrImageType.getSelectedItem().toString());
+
+		searchIntent.putExtra("imageSizeKey", imageSizeKey);
+		searchIntent.putExtra("imageColorKey", imageColorKey);
+		searchIntent.putExtra("imageTypeKey", imageTypeKey);
+		startActivity(searchIntent);
+	}
 }
