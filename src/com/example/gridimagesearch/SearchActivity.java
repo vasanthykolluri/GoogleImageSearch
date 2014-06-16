@@ -11,11 +11,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -48,6 +51,13 @@ public class SearchActivity extends Activity {
 			}			
 		});
 	}
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.settings_icon, menu);
+        return true;
+    }
 
 	private void setupViews() {
 		etQuery = (EditText) findViewById(R.id.etQuery);
@@ -79,5 +89,14 @@ public class SearchActivity extends Activity {
 			}
 			
 		});
+		
+			
+		}
+	
+	public void onSettings(MenuItem mi) {
+		Toast.makeText(this, "Clicked!", Toast.LENGTH_SHORT).show();
+		Intent i = new Intent(this, FilterActivity.class);
+		startActivity(i);
 	}
+
 }
