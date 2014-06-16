@@ -11,6 +11,7 @@ public class Filters {
 
 	static {
 		imageSizes = new LinkedHashMap<String, String>();
+		imageSizes.put("All", "all");
 		imageSizes.put("Icon", "icon");
 		imageSizes.put("Small", "small");
 		imageSizes.put("Medium", "medium");
@@ -20,6 +21,7 @@ public class Filters {
 		imageSizes.put("Huge", "huge");
 
 		imageColors = new LinkedHashMap<String, String>();
+		imageColors.put("All", "all");
 		imageColors.put("Black","black");
 		imageColors.put("Blue","blue");
 		imageColors.put("Brown","brown");
@@ -34,6 +36,7 @@ public class Filters {
 		imageColors.put("Yellow","yellow");
 
 		imageTypes = new LinkedHashMap<String, String>();
+		imageTypes.put("All", "all");
 		imageTypes.put("Face", "face");
 		imageTypes.put("Photo", "photo");
 		imageTypes.put("Clip Art", "clipart");

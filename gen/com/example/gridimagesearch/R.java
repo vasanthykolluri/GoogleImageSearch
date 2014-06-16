@@ -30,18 +30,18 @@ public final class R {
         public static final int btnSave=0x7f080009;
         public static final int btnSearch=0x7f08000c;
         public static final int etQuery=0x7f08000b;
+        public static final int etSiteFilter=0x7f080008;
         public static final int gvResults=0x7f08000d;
         public static final int ivResult=0x7f08000a;
         public static final int miSettings=0x7f08000f;
-        public static final int spnrImageColor=0x7f080004;
-        public static final int spnrImageSize=0x7f080003;
-        public static final int spnrImageType=0x7f080005;
+        public static final int spnrImageColor=0x7f080006;
+        public static final int spnrImageSize=0x7f080005;
+        public static final int spnrImageType=0x7f080007;
         public static final int textView1=0x7f080000;
-        public static final int tvSiteFilter=0x7f080008;
         public static final int txtImageColor=0x7f080002;
         public static final int txtImageSize=0x7f080001;
-        public static final int txtImageType=0x7f080006;
-        public static final int txtSiteFilter=0x7f080007;
+        public static final int txtImageType=0x7f080003;
+        public static final int txtSiteFilter=0x7f080004;
     }
     public static final class layout {
         public static final int activity_filter=0x7f030000;

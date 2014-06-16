@@ -33,6 +33,7 @@ public class SearchActivity extends Activity {
 	String imageSize;
 	String imageColor;
 	String imageType;
+	String siteFilter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +58,6 @@ public class SearchActivity extends Activity {
 			}
 		});
 
-		// get the filter values
-		imageSize = getIntent().getStringExtra("imageSizeKey");
-		imageColor = getIntent().getStringExtra("imageColorKey");
-		imageType = getIntent().getStringExtra("imageTypeKey");
 	}
 
 	@Override
@@ -76,44 +73,67 @@ public class SearchActivity extends Activity {
 		btnSearch = findViewById(R.id.btnSearch);
 	}
 
-	public void onImageSearch(View v) {
+	private void showSearchResults() {
 		String query = etQuery.getText().toString();
 
 		AsyncHttpClient client = new AsyncHttpClient();
+
+		String url = "https://ajax.googleapis.com/ajax/services/search/images?rsz=8&"
+				+ "start="
+				+ 0
+				+ "&v=1.0&q="
+				+ Uri.encode(query)
+				+ (imageSize.equals("all") ? "" : "&imgsz=" + imageSize)
+				+ (imageColor.equals("all") ? "" : "&imgcolor=" + imageColor)
+				+ (imageType.equals("all") ? "" : "&imgtype=" + imageType)
+				+ ((siteFilter.equals("")) ? "" : "&as_sitesearch=" + siteFilter);
+
+		Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
 		
-		Toast.makeText(this, imageSize + " " + imageColor + " " + imageType, Toast.LENGTH_SHORT).show();
+		client.get(url, new JsonHttpResponseHandler() {
+			@Override
+			public void onSuccess(JSONObject response) {
+				JSONArray imageJsonResults = null;
 
-		client.get(
-				"https://ajax.googleapis.com/ajax/services/search/images?rsz=8&"
-						+ "start=" + 0 + "&v=1.0&q=" + Uri.encode(query)
-						+ "&imgsz=" + imageSize + "&imgcolor=" + imageColor
-						+ "&imgtype=" + imageType,
-				new JsonHttpResponseHandler() {
-					@Override
-					public void onSuccess(JSONObject response) {
-						JSONArray imageJsonResults = null;
+				try {
+					imageJsonResults = response.getJSONObject("responseData")
+							.getJSONArray("results");
+					imageResults.clear();
+					imageAdapter.addAll(ImageResult
+							.fromJSONArray(imageJsonResults));
 
-						try {
-							imageJsonResults = response.getJSONObject(
-									"responseData").getJSONArray("results");
-							imageResults.clear();
-							imageAdapter.addAll(ImageResult
-									.fromJSONArray(imageJsonResults));
+					Log.d("DEBUG", imageResults.toString());
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 
-							Log.d("DEBUG", imageResults.toString());
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
+			}
 
-					}
-
-				});
+		});
 
 	}
 
+	public void onImageSearch(View v) {
+		showSearchResults();
+	}
+
 	public void onSettings(MenuItem mi) {
-		Intent i = new Intent(this, FilterActivity.class);
-		startActivity(i);
+		Intent FilterIntent = new Intent(this, FilterActivity.class);
+		startActivityForResult(FilterIntent, 500);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode,
+			Intent filters) {
+		if (resultCode == RESULT_OK && requestCode == 500) {
+			// get the filter values
+			imageSize = filters.getStringExtra("imageSizeKey");
+			imageColor = filters.getStringExtra("imageColorKey");
+			imageType = filters.getStringExtra("imageTypeKey");
+			siteFilter = filters.getStringExtra("siteFilterKey");
+
+			showSearchResults();
+		}
 	}
 
 }

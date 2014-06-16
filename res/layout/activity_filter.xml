@@ -22,9 +22,9 @@
         android:id="@+id/txtImageSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="35dp"
         android:text="Image Size"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -32,41 +32,17 @@
         android:id="@+id/txtImageColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtImageSize"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/txtImageSize"
         android:layout_marginTop="60dp"
         android:text="Image Color"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <Spinner
-        android:id="@+id/spnrImageSize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="40dp"
-        android:layout_toRightOf="@+id/txtImageSize" />
-
-    <Spinner
-        android:id="@+id/spnrImageColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spnrImageSize"
-        android:layout_marginLeft="40dp"
-        android:layout_toRightOf="@+id/txtImageColor" />
-
-    <Spinner
-        android:id="@+id/spnrImageType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spnrImageColor"
-        android:layout_marginLeft="40dp"
-        android:layout_toRightOf="@+id/txtImageType" />
-
     <TextView
         android:id="@+id/txtImageType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtImageColor"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/txtImageColor"
         android:layout_marginTop="60dp"
         android:text="Image Type"
@@ -76,27 +52,50 @@
         android:id="@+id/txtSiteFilter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtImageType"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/txtImageType"
         android:layout_marginTop="60dp"
         android:text="SiteFilter"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <TextView
-        android:id="@+id/tvSiteFilter"
+    <Spinner
+        android:id="@+id/spnrImageSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtImageSize"
+        android:layout_alignLeft="@+id/txtImageSize"
+        android:layout_marginLeft="100dp" />
+
+    <Spinner
+        android:id="@+id/spnrImageColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtImageColor"
+        android:layout_alignLeft="@+id/spnrImageSize" />
+
+    <Spinner
+        android:id="@+id/spnrImageType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtImageType"
+        android:layout_alignLeft="@+id/spnrImageSize" />
+
+    <EditText
+        android:id="@+id/etSiteFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtSiteFilter"
         android:layout_alignBottom="@+id/txtSiteFilter"
-        android:layout_alignLeft="@+id/spnrImageType"
-        android:hint="Site Filter" />
+        android:layout_alignLeft="@+id/spnrImageSize"
+        android:ems="10" />
 
     <Button
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvSiteFilter"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
         android:onClick="onFilterSave"
         android:text="Save" />
 

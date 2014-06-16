@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 public class FilterActivity extends Activity {
@@ -15,6 +16,7 @@ public class FilterActivity extends Activity {
 	Spinner spnrImageSize;
 	Spinner spnrImageColor;
 	Spinner spnrImageType;
+	EditText etSiteFilter;
 
 	Filters filters;
 
@@ -37,6 +39,7 @@ public class FilterActivity extends Activity {
 		spnrImageSize = (Spinner) findViewById(R.id.spnrImageSize);
 		spnrImageColor = (Spinner) findViewById(R.id.spnrImageColor);
 		spnrImageType = (Spinner) findViewById(R.id.spnrImageType);
+		etSiteFilter = (EditText) findViewById(R.id.etSiteFilter);
 
 		ArrayList<String> imageSizeList = new ArrayList<String>(Filters
 				.getImageSizes().keySet());
@@ -55,6 +58,8 @@ public class FilterActivity extends Activity {
 		ArrayAdapter<String> imageTypeAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_dropdown_item, imageTypeList);
 		spnrImageType.setAdapter(imageTypeAdapter);
+		
+		etSiteFilter.setText("");
 	}
 
 	public void onFilterSave(View v) {
@@ -63,10 +68,14 @@ public class FilterActivity extends Activity {
 		String imageSizeKey = Filters.getImageSizes().get(spnrImageSize.getSelectedItem().toString());
 		String imageColorKey = Filters.getImageColors().get(spnrImageColor.getSelectedItem().toString());
 		String imageTypeKey = Filters.getImageTypes().get(spnrImageType.getSelectedItem().toString());
+		String siteFilterKey = etSiteFilter.getText().toString();
 
 		searchIntent.putExtra("imageSizeKey", imageSizeKey);
 		searchIntent.putExtra("imageColorKey", imageColorKey);
 		searchIntent.putExtra("imageTypeKey", imageTypeKey);
-		startActivity(searchIntent);
+		searchIntent.putExtra("siteFilterKey", siteFilterKey);
+		
+		setResult(RESULT_OK, searchIntent);
+		finish();
 	}
 }
