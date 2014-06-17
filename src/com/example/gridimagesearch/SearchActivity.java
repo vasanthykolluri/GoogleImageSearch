@@ -63,7 +63,7 @@ public class SearchActivity extends Activity {
 		gvResults.setOnScrollListener(new EndlessScrollListener() {
 			@Override
 			public void onLoadMore(int page, int totalItemsCount) {
-				Toast.makeText(getApplicationContext(), "onScroll", Toast.LENGTH_LONG).show();
+				//Toast.makeText(getApplicationContext(), "onScroll", Toast.LENGTH_LONG).show();
 				// Triggered only when new data needs to be appended to the list
 				// Add whatever code is needed to append new items to your
 				// AdapterView
