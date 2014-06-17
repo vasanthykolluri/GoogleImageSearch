@@ -73,7 +73,7 @@ public class FilterActivity extends Activity {
 			spnrImageSize.setSelection(0);
 			spnrImageColor.setSelection(0);
 			spnrImageType.setSelection(0);
-			etSiteFilter.setText("");			
+			etSiteFilter.setText("");
 		} else {
 			spnrImageSize.setSelection(Integer.parseInt(savedFilters.get(0)));
 			spnrImageColor.setSelection(Integer.parseInt(savedFilters.get(1)));
@@ -84,7 +84,7 @@ public class FilterActivity extends Activity {
 
 	private void readFilters() {
 		File filesDir = getFilesDir();
-		File filtersFile = new File(filesDir, "savedfilters.txt");
+		File filtersFile = new File(filesDir, "savedfilters_pos.txt");
 
 		try {
 			savedFilters = new ArrayList<String>(
@@ -99,11 +99,10 @@ public class FilterActivity extends Activity {
 
 	private void writeFilters() {
 		File filesDir = getFilesDir();
-		File filtersFile = new File(filesDir, "savedfilters.txt");
+		File filtersFile = new File(filesDir, "savedfilters_pos.txt");
 		try {
 			FileUtils.writeLines(filtersFile, savedFilters);
-			System.out.println("VK:writeFilters - after writing size="
-					+ savedFilters.size());
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -125,9 +124,8 @@ public class FilterActivity extends Activity {
 		searchIntent.putExtra("imageTypeKey", imageTypeKey);
 		searchIntent.putExtra("siteFilterKey", siteFilterKey);
 
-		
 		savedFilters = new ArrayList<String>();
-		
+
 		// Save Filters in a file
 		savedFilters.add(Integer.toString(spnrImageSize
 				.getSelectedItemPosition()));

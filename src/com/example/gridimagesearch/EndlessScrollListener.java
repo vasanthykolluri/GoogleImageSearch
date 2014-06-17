@@ -1,4 +1,6 @@
-/*
+package com.example.gridimagesearch;
+
+
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 
@@ -68,4 +70,3 @@ public abstract class EndlessScrollListener implements OnScrollListener {
         // Don't take any action on changed
     }
 }
-*/
