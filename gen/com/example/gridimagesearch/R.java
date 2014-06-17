@@ -37,9 +37,9 @@ public final class R {
         public static final int spnrImageColor=0x7f080006;
         public static final int spnrImageSize=0x7f080005;
         public static final int spnrImageType=0x7f080007;
-        public static final int textView1=0x7f080000;
+        public static final int textView1=0x7f080001;
         public static final int txtImageColor=0x7f080002;
-        public static final int txtImageSize=0x7f080001;
+        public static final int txtImageSize=0x7f080000;
         public static final int txtImageType=0x7f080003;
         public static final int txtSiteFilter=0x7f080004;
     }

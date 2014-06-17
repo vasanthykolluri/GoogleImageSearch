@@ -1,3 +1,4 @@
+
 package com.example.gridimagesearch;
 
 import java.util.ArrayList;
@@ -30,11 +31,12 @@ public class SearchActivity extends Activity {
 	View btnSearch;
 	ArrayList<ImageResult> imageResults = new ArrayList<ImageResult>();
 	ImageResultArrayAdapter imageAdapter;
+	
 	String imageSize;
 	String imageColor;
 	String imageType;
 	String siteFilter;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,6 +59,22 @@ public class SearchActivity extends Activity {
 				startActivity(i);
 			}
 		});
+/*
+		gvResults.setOnScrollListener(new EndlessScrollListener() {
+			@Override
+			public void onLoadMore(int page, int totalItemsCount) {
+				// Triggered only when new data needs to be appended to the list
+				// Add whatever code is needed to append new items to your
+				// AdapterView
+				customLoadMoreDataFromApi(page);
+				// or customLoadMoreDataFromApi(totalItemsCount);
+			}
+
+			private void customLoadMoreDataFromApi(int page) {
+				// TODO Auto-generated method stub
+				
+			}
+		});*/
 
 	}
 
@@ -78,7 +96,7 @@ public class SearchActivity extends Activity {
 
 		AsyncHttpClient client = new AsyncHttpClient();
 
-		String url = "https://ajax.googleapis.com/ajax/services/search/images?rsz=8&"
+		String url = "https://ajax.googleapis.com/ajax/services/search/images?rsz=12&"
 				+ "start="
 				+ 0
 				+ "&v=1.0&q="
@@ -86,10 +104,11 @@ public class SearchActivity extends Activity {
 				+ (imageSize.equals("all") ? "" : "&imgsz=" + imageSize)
 				+ (imageColor.equals("all") ? "" : "&imgcolor=" + imageColor)
 				+ (imageType.equals("all") ? "" : "&imgtype=" + imageType)
-				+ ((siteFilter.equals("")) ? "" : "&as_sitesearch=" + siteFilter);
+				+ ((siteFilter.equals("")) ? "" : "&as_sitesearch="
+						+ siteFilter);
 
 		Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
-		
+
 		client.get(url, new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONObject response) {
@@ -131,7 +150,6 @@ public class SearchActivity extends Activity {
 			imageColor = filters.getStringExtra("imageColorKey");
 			imageType = filters.getStringExtra("imageTypeKey");
 			siteFilter = filters.getStringExtra("siteFilterKey");
-
 			showSearchResults();
 		}
 	}
